@@ -76,7 +76,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
                             <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-semibold">
-                                Formulario JPA
+                                Formulario MongoDB Atlas
                             </span>
                             <h2 class="fw-bold mt-2 mb-0" style="color: #065f46;">Inscripción de Club</h2>
                         </div>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Nombre del Club</label>
-                                <input type="text" th:field="*{nombre}" class="form-control" placeholder="Ej. Boca Juniors, Liverpool FC..." required>
+                                <input type="text" th:field="*{nombre}" class="form-control" required>
                             </div>
                         </div>
 
@@ -102,24 +102,24 @@
                         <div class="mb-4">
                             <div class="section-header">
                                 <span><i class="bi bi-person-badge me-2 text-info"></i>2. Entrenador Técnico</span>
-                                <span class="badge bg-info-subtle text-info border">@OneToOne</span>
+                                <span class="badge bg-info-subtle text-info border">@DocumentReference (1:1)</span>
                             </div>
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label small fw-semibold">Nombre</label>
-                                    <input type="text" th:field="*{entrenador.nombre}" class="form-control" placeholder="Nombre" required>
+                                    <input type="text" th:field="*{entrenador.nombre}" class="form-control" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-semibold">Apellido</label>
-                                    <input type="text" th:field="*{entrenador.apellido}" class="form-control" placeholder="Apellido" required>
+                                    <input type="text" th:field="*{entrenador.apellido}" class="form-control" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-semibold">Edad</label>
-                                    <input type="number" th:field="*{entrenador.edad}" class="form-control" placeholder="Edad" min="20" max="90" required>
+                                    <input type="number" th:field="*{entrenador.edad}" class="form-control" min="20" max="90" required>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label small fw-semibold">Nacionalidad</label>
-                                    <input type="text" th:field="*{entrenador.nacionalidad}" class="form-control" placeholder="Ej. Argentina, Española..." required>
+                                    <input type="text" th:field="*{entrenador.nacionalidad}" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                         <div class="mb-4">
                             <div class="section-header">
                                 <span><i class="bi bi-globe2 me-2 text-primary"></i>3. Asociación Afiliada</span>
-                                <span class="badge bg-primary-subtle text-primary border">@ManyToOne</span>
+                                <span class="badge bg-primary-subtle text-primary border">@DocumentReference (N:1)</span>
                             </div>
                             <label class="form-label small fw-semibold">Selecciona la Federación o Asociación</label>
                             <select name="asociacionId" class="form-select" required>
@@ -145,7 +145,7 @@
                         <div class="mb-4">
                             <div class="section-header">
                                 <span><i class="bi bi-people-fill me-2 text-success"></i>4. Jugadores Iniciales</span>
-                                <span class="badge bg-success-subtle text-success border">@OneToMany</span>
+                                <span class="badge bg-success-subtle text-success border">@DocumentReference (1:N)</span>
                             </div>
                             
                             <!-- Jugador 1 -->
@@ -153,16 +153,16 @@
                                 <h6 class="fw-bold text-muted mb-2">Jugador 1</h6>
                                 <div class="row g-2">
                                     <div class="col-md-4">
-                                        <input type="text" th:field="*{jugadores[0].nombre}" class="form-control form-control-sm" placeholder="Nombre (ej. Lionel)">
+                                        <input type="text" th:field="*{jugadores[0].nombre}" class="form-control form-control-sm">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" th:field="*{jugadores[0].apellido}" class="form-control form-control-sm" placeholder="Apellido (ej. Messi)">
+                                        <input type="text" th:field="*{jugadores[0].apellido}" class="form-control form-control-sm">
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" th:field="*{jugadores[0].numero}" class="form-control form-control-sm" placeholder="Dorsal" min="1" max="99">
+                                        <input type="number" th:field="*{jugadores[0].numero}" class="form-control form-control-sm" min="1" max="99">
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" th:field="*{jugadores[0].posicion}" class="form-control form-control-sm" placeholder="Posición">
+                                        <input type="text" th:field="*{jugadores[0].posicion}" class="form-control form-control-sm">
                                     </div>
                                 </div>
                             </div>
@@ -172,16 +172,16 @@
                                 <h6 class="fw-bold text-muted mb-2">Jugador 2 (Opcional)</h6>
                                 <div class="row g-2">
                                     <div class="col-md-4">
-                                        <input type="text" th:field="*{jugadores[1].nombre}" class="form-control form-control-sm" placeholder="Nombre">
+                                        <input type="text" th:field="*{jugadores[1].nombre}" class="form-control form-control-sm">
                                     </div>
                                     <div class="col-md-4">
-                                        <input type="text" th:field="*{jugadores[1].apellido}" class="form-control form-control-sm" placeholder="Apellido">
+                                        <input type="text" th:field="*{jugadores[1].apellido}" class="form-control form-control-sm">
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" th:field="*{jugadores[1].numero}" class="form-control form-control-sm" placeholder="Dorsal" min="1" max="99">
+                                        <input type="number" th:field="*{jugadores[1].numero}" class="form-control form-control-sm" min="1" max="99">
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" th:field="*{jugadores[1].posicion}" class="form-control form-control-sm" placeholder="Posición">
+                                        <input type="text" th:field="*{jugadores[1].posicion}" class="form-control form-control-sm">
                                     </div>
                                 </div>
                             </div>

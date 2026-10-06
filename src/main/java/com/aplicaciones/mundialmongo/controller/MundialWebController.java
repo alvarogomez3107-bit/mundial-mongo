@@ -42,14 +42,29 @@ public class MundialWebController {
         return "redirect:/listar";
     }
 
-    // Listar todos los clubes desde MongoDB Atlas
+    // Listar todos los clubes y entidades desde MongoDB Atlas
     @GetMapping("/listar")
     public String listar(Model model) {
         List<Club> clubes = clubRepository.findAll();
         model.addAttribute("clubes", clubes);
         model.addAttribute("totalClubes", clubes.size());
-        model.addAttribute("totalAsociaciones", asociacionRepository.count());
-        model.addAttribute("totalCompeticiones", competicionRepository.count());
+        
+        List<Asociacion> asociaciones = asociacionRepository.findAll();
+        model.addAttribute("asociaciones", asociaciones);
+        model.addAttribute("totalAsociaciones", asociaciones.size());
+
+        List<Competicion> competiciones = competicionRepository.findAll();
+        model.addAttribute("competiciones", competiciones);
+        model.addAttribute("totalCompeticiones", competiciones.size());
+
+        List<Entrenador> entrenadores = entrenadorRepository.findAll();
+        model.addAttribute("entrenadores", entrenadores);
+        model.addAttribute("totalEntrenadores", entrenadores.size());
+
+        List<Jugador> jugadores = jugadorRepository.findAll();
+        model.addAttribute("jugadores", jugadores);
+        model.addAttribute("totalJugadores", jugadores.size());
+
         return "listar";
     }
 
